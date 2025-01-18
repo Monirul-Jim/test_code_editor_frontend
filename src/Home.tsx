@@ -73,7 +73,11 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div
+      className={`min-h-screen ${
+        isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+      }`}
+    >
       <div className="max-w-6xl mx-auto p-6">
         <h1 className="text-3xl font-bold text-center mb-6">
           Online Code Editor
@@ -83,14 +87,20 @@ const Home: React.FC = () => {
         <div className="mb-4">
           <label
             htmlFor="language"
-            className="block text-lg font-medium text-gray-200"
+            className={`block text-lg font-medium ${
+              isDarkMode ? "text-gray-200" : "text-gray-800"
+            }`}
           >
             Select Language
           </label>
           <select
             id="language"
             {...register("language", { required: "Please select a language" })}
-            className="mt-1 block w-full p-3 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            className={`mt-1 block w-full p-3 ${
+              isDarkMode
+                ? "bg-gray-800 border-gray-700 text-white"
+                : "bg-gray-200 border-gray-300 text-gray-900"
+            } rounded-md shadow-sm focus:outline-none focus:ring-indigo-500`}
             onChange={(e) =>
               handleLanguageChange(e.target.value as SupportedLanguage)
             }
@@ -117,7 +127,7 @@ const Home: React.FC = () => {
               : "bg-gray-200 text-gray-900 hover:bg-gray-300"
           }`}
         >
-          {isDarkMode ? <CiLight /> : <MdDarkMode />}
+          {isDarkMode ? <CiLight size={20} /> : <MdDarkMode size={20} />}
         </button>
 
         <form
@@ -130,22 +140,24 @@ const Home: React.FC = () => {
             <div>
               <label
                 htmlFor="code"
-                className="block text-sm font-medium text-gray-200"
+                className={`block text-sm font-medium ${
+                  isDarkMode ? "text-gray-200" : "text-gray-800"
+                }`}
               >
                 Code
               </label>
               <MonacoEditor
                 height="400px"
                 language={selectedLanguage || "javascript"} // Dynamically set language
-                theme="vs-dark"
+                theme={isDarkMode ? "vs-dark" : "light"}
                 value={CODE_SNIPPETS[selectedLanguage as SupportedLanguage]}
                 onChange={(value) => setValue("code", value || "")} // Update form code value on change
                 options={{
                   selectOnLineNumbers: true,
-                  autoClosingBrackets: true,
+                  autoClosingBrackets: "languageDefined",
                   suggestOnTriggerCharacters: true, // Enable autocompletion
                   quickSuggestions: true, // Auto-suggestions for functions
-                  parameterHints: true, // Function parameter hints
+                  parameterHints: { enabled: true }, // Function parameter hints
                 }}
               />
               {errors.code && (
@@ -172,7 +184,15 @@ const Home: React.FC = () => {
             <h2 className="text-xl font-bold mb-2">Output:</h2>
             {output && (
               <div className="">
-                <pre className="whitespace-pre-wrap break-words">{output}</pre>
+                <pre
+                  className={`whitespace-pre-wrap break-words ${
+                    isDarkMode
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-200 text-gray-900"
+                  } p-4 rounded-md`}
+                >
+                  {output}
+                </pre>
               </div>
             )}
           </div>
