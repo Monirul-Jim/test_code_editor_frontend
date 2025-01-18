@@ -8,11 +8,10 @@ export const LANGUAGE_VERSIONS = {
 };
 
 export const CODE_SNIPPETS = {
-  javascript: `\nfunction greet(name) {\n\tconsole.log("Hello, " + name + "!");\n}\n\ngreet("Alex");\n`,
-  typescript: `\ntype Params = {\n\tname: string;\n}\n\nfunction greet(data: Params) {\n\tconsole.log("Hello, " + data.name + "!");\n}\n\ngreet({ name: "Alex" });\n`,
-  python: `\ndef greet(name):\n\tprint("Hello, " + name + "!")\n\ngreet("Alex")\n`,
-  java: `\npublic class HelloWorld {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Hello World");\n\t}\n}\n`,
-  csharp:
-    'using System;\n\nnamespace HelloWorld\n{\n\tclass Hello { \n\t\tstatic void Main(string[] args) {\n\t\t\tConsole.WriteLine("Hello World in C#");\n\t\t}\n\t}\n}\n',
-  php: "<?php\n\n$name = 'Alex';\necho $name;\n",
+  javascript: `\nfunction greet() {\n\tconsole.log("Hello World in JavaScript!");\n}\n\ngreet();\n`,
+  typescript: `\nfunction greet(): void {\n\tconsole.log("Hello World in TypeScript!");\n}\n\ngreet();\n`,
+  python: `\ndef greet():\n\tprint("Hello World in Python!")\n\ngreet()\n`,
+  java: `\npublic class HelloWorld {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Hello World in Java!");\n\t}\n}\n`,
+  csharp: `\nusing System;\n\nnamespace HelloWorld {\n\tclass Program {\n\t\tstatic void Main(string[] args) {\n\t\t\tConsole.WriteLine("Hello World in C#!");\n\t\t}\n\t}\n}\n`,
+  php: `<?php\n\necho "Hello World in PHP!";\n`,
 };

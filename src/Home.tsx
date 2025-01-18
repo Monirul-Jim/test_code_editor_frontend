@@ -3,6 +3,8 @@ import MonacoEditor from "@monaco-editor/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSubmitCodeMutation } from "./redux/api/submitApi";
 import { CODE_SNIPPETS, LANGUAGE_VERSIONS } from "./constant/constant";
+import { CiLight } from "react-icons/ci";
+import { MdDarkMode } from "react-icons/md";
 
 // Define a type for supported languages
 type SupportedLanguage = keyof typeof CODE_SNIPPETS;
@@ -19,6 +21,7 @@ const Home: React.FC = () => {
     formState: { errors },
     setValue,
   } = useForm<FormData>();
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
 
   const [submitCode, { isLoading }] = useSubmitCodeMutation();
   const [output, setOutput] = useState<string | null>(null);
@@ -106,6 +109,16 @@ const Home: React.FC = () => {
             </p>
           )}
         </div>
+        <button
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          className={`py-1 px-4 rounded ${
+            isDarkMode
+              ? "bg-gray-700 text-white hover:bg-gray-600"
+              : "bg-gray-200 text-gray-900 hover:bg-gray-300"
+          }`}
+        >
+          {isDarkMode ? <CiLight /> : <MdDarkMode />}
+        </button>
 
         <form
           onSubmit={handleSubmit(onSubmit)}
