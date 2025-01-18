@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import MonacoEditor from "@monaco-editor/react";
-import { MdDarkMode } from "react-icons/md";
+import {
+  MdDarkMode,
+  MdFullscreen,
+  MdOutlineCloseFullscreen,
+} from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 
 const LivePreviewEditor: React.FC = () => {
@@ -137,7 +141,7 @@ const LivePreviewEditor: React.FC = () => {
                 onClick={() => setIsFullScreen(true)}
                 className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded"
               >
-                Big Screen
+                <MdFullscreen />
               </button>
             </div>
             <iframe
@@ -157,7 +161,7 @@ const LivePreviewEditor: React.FC = () => {
                 onClick={() => setIsFullScreen(false)}
                 className="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded z-10"
               >
-                Close
+                <MdOutlineCloseFullscreen />
               </button>
               <iframe
                 className="w-full h-full "

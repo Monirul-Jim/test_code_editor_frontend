@@ -135,9 +135,9 @@ const Home: React.FC = () => {
           className="grid grid-cols-1 lg:grid-cols-2 gap-6"
         >
           {/* Left side: Code Editor */}
-          <div className="space-y-4">
-            {/* Code Input */}
-            <div>
+          <div className="flex items-start ">
+            {/* Code Editor */}
+            <div className="flex-grow">
               <label
                 htmlFor="code"
                 className={`block text-sm font-medium ${
@@ -167,14 +167,50 @@ const Home: React.FC = () => {
               )}
             </div>
 
-            {/* Submit Button */}
+            {/* Run Button */}
             <div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                {isLoading ? "Submitting..." : "Submit Code"}
+                {isLoading ? (
+                  // <AiOutlineLoading size={30} />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 100 100"
+                    fill="none"
+                    width="24"
+                    height="24"
+                    className="animate-spin"
+                  >
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      stroke="currentColor"
+                      strokeWidth="10"
+                      opacity="0.3"
+                    />
+                    <path
+                      fill="currentColor"
+                      d="M50 5a45 45 0 0145 45h-10a35 35 0 00-35-35V5z"
+                    />
+                  </svg>
+                ) : (
+                  // <VscRunCoverage size={30}
+                  // />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="24"
+                    height="24"
+                    className="inline-block"
+                  >
+                    <path d="M3 22V2l18 10L3 22z" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
